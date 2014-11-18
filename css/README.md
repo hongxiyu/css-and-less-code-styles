@@ -18,34 +18,23 @@
 
 ## css书写要求
 
-* 格式
-* 注释
-* 声明顺序
-* a标签伪类书写顺序
-* 不要使用@import
-* 简写形式的属性声明
-* 非必要的情况下，不要给标签写属性
-* 清除浮动
-* IE css hack
-* id 和class 命名
-* 其他
 
 ### 格式
 
-* 缩进用2个空格
+* 缩进用 2 个空格
 * 每一条规则的大括号 { 前添加空格
-* 属性名的`：`后**必须**有空格
-* 多个selector共用一个样式集，则多个selector必须**换行**
-* 对属性值为0的情况省略单位，如`margin: 0;`
-* 对于属性值和颜色参数，省略小于1的小数前面的0 ，如`.6`代替`0.6`,`.5px`代替`0.5px`
-* 十六进制值应该全部**小写**，例如`#fff`。（小写的字符易于分辨，因为他们的形式更易于区分）
-* 一致使用双引号，如`content: ""`
-* 在选择器中以引号夹注属性值，例如：`input[type="checkbox"]`
-* 每一个以逗号分隔的属性的逗号后面**不要**保留一个空格
+* 属性名的 `:` 后 **必须** 有空格
+* 多个 selector 共用一个样式集，则多个selector必须 **换行**
+* 对属性值为 0 的情况省略单位，如 `margin: 0;`
+* 对于属性值和颜色参数，省略小于 1 的小数前面的 0 ，如 `.6` 代替 `0.6` , `.5px` 代替 `0.5px`
+* 十六进制值应该全部 **小写**，例如 `#fff` 。（小写的字符易于分辨，因为他们的形式更易于区分）
+* 一致使用双引号，如 `content: ""` ，而url不使用引号，`background: url(image/....png)`
+* 在选择器中以引号夹注属性值，例如： `input[type="checkbox"]`
+* 每一个以逗号分隔的属性的逗号后面 **不要** 保留一个空格
 
 如:
 
-```
+```css
 .bg {
   margin: 0;
   color: #333;
@@ -68,13 +57,13 @@
 3. typographic （排版）
 4. visual
 
-由于定位(positioning)可以从正常的文档流中移除元素，并且还能覆盖盒模型(box model)相关的样式，因此排在首位。盒模型排在第二位，因为它决定了组件的尺寸和位置。
+由于定位 (positioning) 可以从正常的文档流中移除元素，并且还能覆盖盒模型 (box model) 相关的样式，因此排在首位。盒模型排在第二位，因为它决定了组件的尺寸和位置。
 
 其他属性只是影响组件的内部（inside）或者是不影响前两组属性，因此排在后面。
 
 完整的属性列表及其排列顺序请参考 [Recess](http://twitter.github.io/recess/)。
 
-```
+```css
 #bg {
   /* positioning */
   position: absolute;
@@ -115,9 +104,9 @@
 
 ### 不要使用@import
 
-与`<link>`标签相比，`@import` 指令要慢很多，不光增加了额外的请求次数，还会导致不可预料的问题。替代办法有以下几种：
-* 使用多个`<link>`元素
-* 通过css预处理器，将多个css文件编译为一个文件，如less或sass
+与 `<link>` 标签相比， `@import` 指令要慢很多，不光增加了额外的请求次数，还会导致不可预料的问题。替代办法有以下几种：
+* 使用多个 `<link>` 元素
+* 通过 css 预处理器，将多个 css 文件编译为一个文件，如less或sass
 
 >在这里，我们一般采用第二种方法。
 
@@ -133,41 +122,46 @@
 * border-radius
 
 使用规则：
-1. 在**不覆盖样式值**的情况下，应该使用简写形式的属性声明值，包括(仅仅设置左右，或者仅仅设置上下，这样修改可以方便很多)
-2. 如果只是需要声明其中之一，如`margin-left`,则不使用简写形式。
+1. 在 **不覆盖样式值** 的情况下，应该使用简写形式的属性声明值，包括(仅仅设置左右，或者仅仅设置上下，这样修改可以方便很多)
+2. 如果只是需要声明其中之一，如 `margin-left` ,则不使用简写形式。
 
 ### a标签伪类书写顺序
 
->按照`a:link`, `a:visited`, `a:hover`, `a:active` 的顺序，否则在某些浏览器中会失效。
+>按照 `a:link` , `a:visited` , `a:hover` , `a:active` 的顺序，否则在某些浏览器中会失效。
 
-* 在css定义中，`a:hover`必须被置于`a:link` 和 `a:visited`之后，才是有效的。
-* 在css定义中，`a:active`必须被置于`a:hover`之后，才是有效的。
+* 在css定义中，`a:hover` 必须被置于 `a:link` 和 `a:visited` 之后，才是有效的。
+* 在css定义中，`a:active` 必须被置于 `a:hover` 之后，才是有效的。
 
 
 ### 不要直接对标签写属性
 
-如，`<p class="title">hello bigertech</p>`,设置p字体大小为18px
-正确写法：
+如，
+```html
+<p class="title"> hello bigertech </p>
 ```
+设置 p 字体大小为 18 px。
+
+正确写法：
+```css
 .title {
-    font-size: 18px;
+  font-size: 18px;
 }
 ```
 不推荐写法：
-```
+```css
 p {
-    font-size: 18px;
+  font-size: 18px;
 }
 ```
 
 
 ### 清除浮动
 
->清除浮动**不要**在html中加入标签来清理浮动，通过在浮动元素的**父元素**上添加`.bg-clearfix`来清除浮动
+>清除浮动 **不要** 在html中加入标签来清理浮动，通过在浮动元素的 **父元素** 上添加 `.bg-clearfix` 来清除浮动
 
 ### IE css hack
 
-```
+```css
 /* 针对ie的hack */
  selector {
     property: value;     /* 所有浏览器 */
@@ -179,17 +173,17 @@ p {
  }
 ```
 
->尽量避免使用css hack
+> 尽量避免使用css hack
 
 ### id和class 命名
 
-> * 全都使用**小写**，采用`-`对class中的字母进行分隔,**并且使用bg前缀**。
-* 使用ID和类名尽可能短。
+> * 全都使用 **小写**，采用 `-` 对 class 中的字母进行分隔， **并且使用 bg 前缀**。
+* 使用 id 和 class 名称尽可能短。
 
 这样有助于代码的可理解性和效率。
 
 正确写法：
-```
+```css
 .bg-title {
     font-size: 16px;
 }
@@ -197,7 +191,7 @@ p {
 .author {}
 ```
 不推荐写法：
-```
+```css
 .bgTitle {
     font-size: 16px;
 }
@@ -207,71 +201,4 @@ p {
 
 ### 其他
 
-* 尽量少的使用 !important
-
-
-# less
-
-> less 是动态的样式表语言，通过简洁明了的语法定义，使编写 CSS 的工作变得非常简单。
-
-*注意：其他未提及的东西请参照css*
-
-### 顺序
-
-> 书写的顺序按照 属性、伪类、继承选择器 排序，并且三者之间都要有空行分隔。
-
-按照上述的顺序，代码看起来会简洁很多。如：
-
-```
-.bg-banner {
-  background: #333;
-
-  &:hover {
-    color: #eee;
-  }
-
-  .bg-banner-title {
-    font-size: 20px;
-  }
-  .bg-banner-desc {
-    font-size: 16px;
-  }
-}
-```
-
-### 模块化
-
-> 模块化：每个独立的div。
-
-有时候会遇到这样的情况，对于页面中重复的list表单，可以对每个item进行模块化。
-```
-<div class="bg-post">
-  <p class="bg-title">自你往天猫宝里存钱，你的手已剁</p>
-  <span class="bg-desc">.......</span>
-</div>
-```
-如上代码，可能会出现类`.bg-title`出现在其他地方，除非bg-title显示的样式一样，不然为了避免冲突，应该命名如下：
-```
-<div class="bg-post">
-  <p class="bg-post-title">自你往天猫宝里存钱，你的手已剁</p>
-  <span class="bg-post-desc">.......</span>
-</div>
-```
-
-> 模块嵌套：大模块可有子模块命名。
-
-```
-<div class="bg-post">
-  <p class="bg-post-title">自你往天猫宝里存钱，你的手已剁</p>
-  <div class="bg-meta">
-    <span class="bg-meta-desc">....</span>
-    <div class="bg-desc">
-      <img class="bg-desc-img">
-    </div>
-  </div>
-</div>
-```
-这样的选择器可以这样写: `.bg-post > bg-desc .bg-desc-img`
-
-
-
+* 尽量少的使用 `!important`
